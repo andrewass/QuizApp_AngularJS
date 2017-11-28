@@ -2,19 +2,24 @@
 
 var mainModule = angular.module("mainModule", []);
 
-var questArr = [];
+
+
 
 mainModule.controller("mainController", function ($scope) {
+
+    $scope.questArr = [];
 
     $scope.displayCategories = function () {
         $scope.showQuestion = false;
         $scope.showCategory = true;
-        questArr = [];
+        $scope.questArr = [];
     };
 
     $scope.displayQuestion = function () {
         $scope.showCategory = false;
         $scope.showQuestion = true;
+        $scope.ind = 0;
+        $scope.getNextQuestion();
     };
 
 });

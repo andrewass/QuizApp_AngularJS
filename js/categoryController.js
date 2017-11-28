@@ -27,7 +27,7 @@ mainModule.controller("categoryCtrl", function ($scope, $http) {
                alts.push( value.incorrect_answers[i]);
             }
             alts.push(corr);
-            questArr.push( new Question(q, corr, alts) );
+            $scope.questArr.push( new Question(q, corr, alts) );
         });
         $scope.displayQuestion();
     };
