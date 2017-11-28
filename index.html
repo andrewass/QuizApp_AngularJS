@@ -17,7 +17,6 @@
 
 
 
-
 <!-- A div representing the main menu of the application -->
 <div class="view" id="mainMenu" ng-controller="categoryCtrl" ng-init="loadCat()" ng-show="showCategory">
 
@@ -56,7 +55,7 @@
     </div>
 
 
-    <p id="question">{{ questArr[ind].question | htmlToText }}</p>
+    <p id="question">{{ questArr[ind].question }}</p>
     <button id="b1" class="quizB">{{ questArr[ind].alts[0] }}</button>
     <button id="b2" class="quizB">{{ questArr[ind].alts[1] }}</button>
     <button id="b3" class="quizB">{{ questArr[ind].alts[2] }}</button>

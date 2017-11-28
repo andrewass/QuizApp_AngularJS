@@ -3,8 +3,6 @@
 var mainModule = angular.module("mainModule", []);
 
 
-
-
 mainModule.controller("mainController", function ($scope) {
 
     $scope.questArr = [];
