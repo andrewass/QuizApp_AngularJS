@@ -56,7 +56,8 @@
 
     <p id="question">{{ questArr[ind].question }}</p>
 
-    <button class="quizB" ng-repeat="alt in questArr[ind].alts" ng-click="checkAnswer(alt)"
+    <button class="quizB" ng-repeat="alt in questArr[ind].alts"
+            ng-click="checkAnswer(alt, questArr[ind].correct)"
             ng-class="{ 'correct' : (alt === selectedAnswer && selectedAnswer === questArr[ind].correct),
                         'incorrect' : (alt === selectedAnswer && selectedAnswer !== questArr[ind].correct)}">
         {{ alt }}
@@ -65,8 +66,8 @@
     <div class="subMenu">
         <button id="menu" ng-click="exitQuestionMode() && displayCategories()">Menu</button>
         <button id="next" ng-click="getNextQuestion()">Next</button>
-        <p id="score"></p>
-        <p id="alerts"></p>
+        <p>Score : {{correctAnswered}} / {{answered}}</p>
+        <p>{{alterMsg}}</p>
     </div>
 </div>
 
