@@ -46,3 +46,11 @@ button{
 #question{
     padding: 2% 10% 2% 10%;
 }
+
+.correct{
+    background-color: green;
+}
+
+.incorrect{
+    background-color: red;
+}

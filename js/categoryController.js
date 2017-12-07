@@ -3,18 +3,14 @@
 /* Controller for collecting categories */
 mainModule.controller("categoryCtrl", function ($scope, $http) {
 
-    $scope.catArray = [];
-
-
 
     /*Parse the various categories*/
     $scope.parseCategories = function () {
-
+        $scope.catArray = [];
         angular.forEach($scope.categories, function(value) {
             $scope.catArray.push( new Category(value.id, value.name) );
         });
     };
-
 
 
     /* Parse the questions of the selected category and difficulty */
@@ -22,16 +18,16 @@ mainModule.controller("categoryCtrl", function ($scope, $http) {
         angular.forEach($scope.questions, function(value) {
             const q = value.question;
             const corr = value.correct_answer;
-            const alts = [];
-            for(var i=0; i<3; i++){
+            let alts = [];
+            for(let i=0; i<3; i++){
                alts.push( value.incorrect_answers[i]);
             }
             alts.push(corr);
+            alts = shuffle(alts);
             $scope.questArr.push( new Question(q, corr, alts) );
         });
         $scope.displayQuestion();
     };
-
 
 
     /*Load categories from opentdb.com */

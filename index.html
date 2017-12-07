@@ -4,16 +4,16 @@
 <head>
     <title>Quiz App</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/styling.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
     <script src="js/various.js"></script>
     <script src="js/mainController.js"></script>
     <script src="js/categoryController.js"></script>
     <script src="js/questionController.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/styling.css">
 </head>
 
 
-<body ng-app="mainModule" ng-controller="mainController" ng-init="displayCategories()">
+<body ng-app="mainModule" ng-controller="mainCtrl" ng-init="displayCategories()">
 
 
 
@@ -26,9 +26,8 @@
         </div>
 
         <p>Category : </p>
-
         <select id="catSel" ng-model="selectedID">
-            <option id="catOpt" ng-repeat="cat in catArray" value={{cat.id}} ng-selected="$first">
+            <option id="catOpt" ng-repeat="cat in catArray" value={{cat.id}} >
                 {{cat.cat}}
             </option>
         </select>
@@ -48,7 +47,7 @@
 
 
 <!-- A div representing the question part of the application -->
-<div class="view" id="quizBlock" ng-controller="questionController" ng-show="showQuestion">
+<div class="view" id="quizBlock" ng-controller="questionCtrl" ng-show="showQuestion">
 
     <div class="header">
         <h1>Quiz App</h1>
@@ -56,13 +55,15 @@
 
 
     <p id="question">{{ questArr[ind].question }}</p>
-    <button id="b1" class="quizB">{{ questArr[ind].alts[0] }}</button>
-    <button id="b2" class="quizB">{{ questArr[ind].alts[1] }}</button>
-    <button id="b3" class="quizB">{{ questArr[ind].alts[2] }}</button>
-    <button id="b4" class="quizB">{{ questArr[ind].alts[3] }}</button>
+
+    <button class="quizB" ng-repeat="alt in questArr[ind].alts" ng-click="checkAnswer(alt)"
+            ng-class="{ 'correct' : (alt === selectedAnswer && selectedAnswer === questArr[ind].correct),
+                        'incorrect' : (alt === selectedAnswer && selectedAnswer !== questArr[ind].correct)}">
+        {{ alt }}
+    </button>
 
     <div class="subMenu">
-        <button id="menu" ng-click="displayCategories()">Menu</button>
+        <button id="menu" ng-click="exitQuestionMode() && displayCategories()">Menu</button>
         <button id="next" ng-click="getNextQuestion()">Next</button>
         <p id="score"></p>
         <p id="alerts"></p>
